@@ -1,0 +1,28 @@
+import Link from "next/link";
+import { products } from "./data";
+
+export default function ProductsPage() {
+  return (
+    <div className="mx-auto max-w-3xl p-6">
+      <h1 className="mb-6 text-3xl font-bold text-gray-800">ສິນຄ້າທັງໝົດ</h1>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {products.map((product) => (
+          <Link
+            key={product.id}
+            href={`/products/${product.id}`}
+            className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+          >
+            <div className="text-5xl">{product.emoji}</div>
+            <h2 className="mt-3 text-lg font-semibold text-gray-800">
+              {product.name}
+            </h2>
+            <p className="mt-1 text-blue-600">
+              {product.price.toLocaleString("en-US")} ກີບ
+            </p>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
