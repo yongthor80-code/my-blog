@@ -46,7 +46,7 @@ const years = [
   { label: "2029", value: "2029" },
 ]
 
-export default function FieldDemo() {
+export default function ProfilePage() {
   return (
     <main className="flex justify-center p-8">
       <div className="w-full max-w-md bg-card border border-border rounded-2xl shadow-lg p-8">
@@ -134,6 +134,7 @@ export default function FieldDemo() {
                 The billing address associated with your payment method
               </FieldDescription>
               <FieldGroup>
+                {/* 🚨 ແກ້ໄຂບ່ອນນີ້: ລຶບ Tag FieldSeparator ທີ່ຊ້ອນກັນອອກ */}
                 <Field orientation="horizontal">
                   <Checkbox
                     id="checkout-7j9-same-as-shipping-wgm"

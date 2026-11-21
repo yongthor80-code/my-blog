@@ -3,11 +3,15 @@ import { cn } from "@/lib/utils"
 
 const Field = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLDivElement> & { orientation?: "vertical" | "horizontal" }
+>(({ className, orientation = "vertical", ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col gap-1.5", className)}
+    className={cn(
+      "flex gap-2",
+      orientation === "vertical" ? "flex-col" : "flex-row items-center",
+      className
+    )}
     {...props}
   />
 ))
@@ -66,7 +70,6 @@ const FieldError = React.forwardRef<
 ))
 FieldError.displayName = "FieldError"
 
-// ເພີ່ມ 3 ຕົວທີ່ຂາດຫາຍໄປກັບຄືນມາ
 const FieldSet = React.forwardRef<
   HTMLFieldSetElement,
   React.FieldsetHTMLAttributes<HTMLFieldSetElement>
@@ -85,7 +88,7 @@ const FieldLegend = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <legend
     ref={ref}
-    className={cn("text-sm font-medium", className)}
+    className={cn("text-sm font-medium mb-2", className)}
     {...props}
   />
 ))
@@ -93,11 +96,16 @@ FieldLegend.displayName = "FieldLegend"
 
 const FieldSeparator = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLDivElement> & { orientation?: "horizontal" | "vertical" }
+>(({ className, orientation = "horizontal", ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("h-px bg-border my-2", className)}
+    role="separator"
+    className={cn(
+      "bg-border my-2",
+      orientation === "horizontal" ? "h-px w-full" : "w-px h-full mx-2",
+      className
+    )}
     {...props}
   />
 ))
