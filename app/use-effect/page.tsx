@@ -14,9 +14,9 @@ export default function Countdown() {
   }, []);
 
   return (
-    <div className="mx-auto mt-10 max-w-xs rounded-xl border bg-white p-8 text-center shadow-md">
-      <p className="text-gray-500">ນັບຖອຍຫຼັງ</p>
-      <h1 className="mt-2 text-7xl font-bold text-green-600">{count}</h1>
+    <div className="mx-auto mt-10 max-w-xs rounded-xl border bg-card p-8 text-center shadow-md">
+      <p className="text-muted-foreground">ນັບຖອຍຫຼັງ</p>
+      <h1 className="mt-2 text-7xl font-bold text-primary">{count}</h1>
     </div>
   );
 }
