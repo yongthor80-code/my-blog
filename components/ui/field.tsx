@@ -66,10 +66,50 @@ const FieldError = React.forwardRef<
 ))
 FieldError.displayName = "FieldError"
 
+// ເພີ່ມ 3 ຕົວທີ່ຂາດຫາຍໄປກັບຄືນມາ
+const FieldSet = React.forwardRef<
+  HTMLFieldSetElement,
+  React.FieldsetHTMLAttributes<HTMLFieldSetElement>
+>(({ className, ...props }, ref) => (
+  <fieldset
+    ref={ref}
+    className={cn("flex flex-col gap-4", className)}
+    {...props}
+  />
+))
+FieldSet.displayName = "FieldSet"
+
+const FieldLegend = React.forwardRef<
+  HTMLLegendElement,
+  React.HTMLAttributes<HTMLLegendElement>
+>(({ className, ...props }, ref) => (
+  <legend
+    ref={ref}
+    className={cn("text-sm font-medium", className)}
+    {...props}
+  />
+))
+FieldLegend.displayName = "FieldLegend"
+
+const FieldSeparator = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("h-px bg-border my-2", className)}
+    {...props}
+  />
+))
+FieldSeparator.displayName = "FieldSeparator"
+
 export {
   Field,
   FieldGroup,
   FieldLabel,
   FieldDescription,
   FieldError,
+  FieldSet,
+  FieldLegend,
+  FieldSeparator,
 }
