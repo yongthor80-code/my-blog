@@ -28,7 +28,7 @@ export default function LoginPage() {
   const [error, setError] = useState("")
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault() // ກັນບໍ່ໃຫ້ browser reload ໜ້າ
+    e.preventDefault() 
 
     if (!email.includes("@")) {
       setError("ກະລຸນາໃສ່ Email ໃຫ້ຖືກຕ້ອງ")

@@ -14,6 +14,7 @@ import {
   ShoppingBag,
   UserPlus,
   X,
+  UserCircle,
 } from "lucide-react"
 
 import ThemeToggle from "@/components/ThemeToggle"
@@ -32,8 +33,6 @@ const mainLinks: NavItem[] = [
   { href: "/blog", label: "Blog", icon: BookOpen },
   { href: "/about", label: "About", icon: Info },
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/login", label: "Login", icon: LogIn },
-  { href: "/register", label: "Register", icon: UserPlus },
 ]
 
 // ເມນູຝຶກຫັດ
@@ -45,6 +44,9 @@ const practiceLinks: NavItem[] = [
 export default function Sidebar() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+
+  // ຈຳລອງການ Login
+  const isLoggedIn = pathname === "/dashboard" || pathname.startsWith("/profile")
 
   function isActive(href: string) {
     if (href === "/") return pathname === "/"
@@ -102,7 +104,7 @@ export default function Sidebar() {
           "md:translate-x-0"
         )}
       >
-        {/* ຫົວ Sidebar: ຍ້າຍ ThemeToggle ມາໄວ້ຂວາເທິງ */}
+        {/* ຫົວ Sidebar */}
         <div className="flex h-14 items-center justify-between border-b border-sidebar-border px-4">
           <Link href="/" className="text-lg font-semibold">
             My Blog
@@ -120,19 +122,42 @@ export default function Sidebar() {
           </div>
         </div>
 
-        {/* ເມນູຫຼັກ */}
-        <nav className="flex-1 space-y-1 overflow-y-auto p-3">
-          {mainLinks.map((item) => (
-            <NavLink key={item.href} {...item} />
-          ))}
-        </nav>
+        {/* ສ່ວນເມນູທັງໝົດ (ເຮັດໃຫ້ເລື່ອນໄດ້ຖ້າມັນຍາວ) */}
+        <nav className="flex-1 overflow-y-auto p-3 space-y-4">
+          
+          {/* 1. ເມນູຫຼັກ */}
+          <div className="space-y-1">
+            {mainLinks.map((item) => (
+              <NavLink key={item.href} {...item} />
+            ))}
+          </div>
 
-        {/* ລຸ່ມສຸດ: ສະເພາະ Practice */}
-        <div className="space-y-1 border-t border-sidebar-border p-3">
-          {practiceLinks.map((item) => (
-            <NavLink key={item.href} {...item} />
-          ))}
-        </div>
+          {/* 2. ເມນູຝຶກຫັດ (ຍ້າຍຂຶ້ນມາຢູ່ກາງ) */}
+          <div className="space-y-1">
+            <p className="px-3 pb-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              Practice
+            </p>
+            {practiceLinks.map((item) => (
+              <NavLink key={item.href} {...item} />
+            ))}
+          </div>
+
+          {/* 3. ເມນູບັນຊີ (Login/Register ຫຼື Profile) */}
+          <div className="space-y-1">
+            <p className="px-3 pb-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              Account
+            </p>
+            {!isLoggedIn ? (
+              <>
+                <NavLink href="/login" label="Login" icon={LogIn} />
+                <NavLink href="/register" label="Register" icon={UserPlus} />
+              </>
+            ) : (
+              <NavLink href="/profile" label="Profile" icon={UserCircle} />
+            )}
+          </div>
+
+        </nav>
       </aside>
     </>
   )
